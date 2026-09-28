@@ -2,6 +2,15 @@
 
 用交互图像理解偏微分方程。调整时间和参数，观察解的传播、扩散，以及特征线何时相交。界面与说明均为中文。
 
+## 最简单的打开方式（推荐）
+
+1. 在仓库页面点击绿色 **Code → Download ZIP**，下载并解压。
+2. 双击文件夹里的 **`index.html`**。
+
+网页会在浏览器中打开；**不用安装 Python、配置环境，也不用联网**。在手机上，也可把 `index.html` 保存到本地后用支持本地 HTML 的浏览器打开。页面提供播放/暂停、时间与参数调节、Burgers 方程初始点反查。
+
+> GitHub 上点击 `index.html` 通常只会看到文件代码；请先下载，再在电脑上双击本地文件。
+
 ## 当前内容
 
 | 模块 | 方程与初值 | 能看到什么 |
@@ -11,9 +20,9 @@
 | 热方程 | $u_t=\kappa u_{xx}$；两个正弦模态 | 高频模态以更快的速率衰减 |
 | 波动方程 | $u_{tt}=c^2u_{xx}$；高斯初位移、零初速度 | 达朗贝尔公式与波峰向两边传播 |
 
-## 运行
+## 可选：运行原来的 Python 版本
 
-需要 Python 3.10 或更新版本。在仓库根目录执行：
+如果你想使用 Streamlit 与 Plotly 版本，才需要 Python 3.10 或更新版本。在仓库根目录执行：
 
 ```bash
 python -m venv .venv
@@ -57,10 +66,12 @@ python -m pytest -q
 python -m compileall -q app.py pde_visual_lab
 ```
 
-- `app.py`：Streamlit 页面与 Plotly 图像。
+- `index.html`：无需安装或联网的单文件版，推荐从这里开始。
+- `app.py`：可选的 Streamlit 页面与 Plotly 图像。
 - `pde_visual_lab/models.py`：四种模型的解析式及 Burgers 初始点反求。
 - `tests/test_models.py`：初值、传播公式与 Burgers 特征映射的数值验证。
-- `.github/workflows/test.yml`：每次推送与拉取请求自动运行测试。
+- `tests/check_html.mjs`：使用 Node.js 内置功能检查离线页面四个模块的渲染与交互。
+- `.github/workflows/test.yml`：每次推送与拉取请求自动验证 Python 与离线版。
 
 ## 模型范围
 

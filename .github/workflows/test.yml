@@ -13,3 +13,7 @@ jobs:
       - run: python -m pip install -r requirements-dev.txt
       - run: python -m pytest -q
       - run: python -m compileall -q app.py pde_visual_lab
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/check_html.mjs
